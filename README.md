@@ -1,6 +1,7 @@
 # leijonaa theme
 Theme for my friend Selina's http://www.leijonaa.fi blog.
 
+![Polylion](http://i.imgur.com/csjXDd0.jpg)
 
 Minimalistic | Clean | Black and white | Blogging
 
