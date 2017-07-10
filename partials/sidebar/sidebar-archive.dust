@@ -1,0 +1,5 @@
+{! File contains second sidebar element: post archive. !}
+{#Archive}
+	<div class="sidebar__archive">
+	</div>
+{/Archive}
