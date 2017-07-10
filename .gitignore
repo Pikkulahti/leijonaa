@@ -24,3 +24,6 @@ Thumbs.db
 
 # No nodemodules
 node_modules
+
+# No built scripts to git
+assets/dist/
