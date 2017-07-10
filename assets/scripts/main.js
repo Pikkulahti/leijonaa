@@ -4,7 +4,7 @@
 
 // Require 3rd party libraries
 require( "babel-polyfill" );
-require( "milligram" );
+require( "foundation-sites" );
 
 // Add template-specific scripts.
 let templateScripts = {

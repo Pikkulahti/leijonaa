@@ -1,50 +1,84 @@
-window.DustPressStarter = (function(window, document, $) {
+/**
+ * Class Theme
+ *
+ * Controls theme's JS class running.
+ */
+class Theme {
 
-    var app = {
-        currentPage: 1
+    /**
+     * The class constructor.
+     *
+     * @param  {object} templateControllers The hash map for template-specific controllers.
+     * @param  {object} globalControllers   The hash map for global controllers.
+     */
+    constructor( templateControllers, globalControllers ) {
+        this._templateControllers = templateControllers;
+        this._globalControllers = globalControllers;
+
+        // Bind run controllers on document ready.
+        document.addEventListener( "DOMContentLoaded", e => this.runDocReady( e ) );
     };
 
-    app.cache = function () {
-        app.$mainContainer  = $("#main-content");
-        app.$postsContainer = $("#post-list-container");
-        app.$loadMore       = app.$mainContainer.find("#load-more");
-        app.maxNumPages     = parseInt(app.$loadMore.data('max-num-pages'));
-    };
-
-    app.init = function() {
-        app.cache();
-
-        app.$loadMore.on("click", app.loadMore);
-    };
-
-    app.loadMore = function (e) {
-        if ( e.preventDefault ) {
-            e.preventDefault;
+    /**
+     * Run theme scripts for the html elements class list.
+     */
+    runDocReady() {
+        // Run all global scripts
+        for ( let className in this._globalControllers ) {
+            // Check for method existence.
+            if (typeof this._globalControllers[ className ].docReady === 'function') {
+                this._globalControllers[ className ].docReady();
+            }
         }
 
-        // Load more with DustPress.js
-        dp("PageArchive/Query", {
-            args: {
-                page: ++app.currentPage
-            },
-            tidy: true,
-            partial: "post-list",
-            success: function(response) {
-                app.$postsContainer.append(response);
-                if ( app.currentPage === app.maxNumPages ) {
-                    app.$loadMore.hide();
-                }
-            },
-            error: function( error ) {
-                console.log(error);
+        // Run template-specific scripts.
+        for ( let className in this._templateControllers ) {
+            // Run the 'docReady' method if the document 
+            // has the correct document class and the method exists.
+            if (Theme.documentHasClass( className ) &&
+                typeof this._templateControllers[ className ].docReady === 'function') {
+                this._templateControllers[ className ].docReady();
             }
-        });
+        }
+    }
 
-        return false;
-    };
+    /**
+     * An ES6 getter for all controllers.
+     * All controllers are concatenated into a single hash map.
+     *
+     * @return {object} The hash map object.
+     */
+    get controllers() {
+        return this._templateControllers.concat( this._globalControllers ) ;
+    }
 
-    app.init();
+    /**
+     * Returns a specific controller by the given class name.
+     *
+     * @param  {string} name    The controller class name.
+     * @return {object|boolean} The controller class object.
+     */
+    getController( name ) {
+        if ( typeof this._templateControllers[ name ] !== "undefined" ) {
+            return this._templateControllers[ name ]
+        }
+        else if ( typeof this._globalControllers[ name ] !== "undefined" ) {
+            return this._globalControllers[ name ]
+        }
+        else {
+            return false;
+        }
+    }
 
-    return app;
+    /**
+     * Check wheather the body has the given class.
+     *
+     * @param {string} docClass The body class string.
+     */
+    static documentHasClass( docClass ) {
+        return document.documentElement.classList.contains( docClass );
+    }
 
-}(window, document, jQuery));
+}
+
+module.exports = Theme;
