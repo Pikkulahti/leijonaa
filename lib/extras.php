@@ -3,9 +3,9 @@
  * Extra theme functionalities.
  */
 
-namespace THEMENAME\Extras;
+namespace leijonaa\Extras;
 
-use THEMENAME\Setup;
+use leijonaa\Setup;
 
 /**
  * Add <body> classes

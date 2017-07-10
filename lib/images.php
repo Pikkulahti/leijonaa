@@ -3,7 +3,7 @@
  * Image setup file.
  */
 
-namespace THEMENAME\Images;
+namespace leijonaa\Images;
 
 /**
  * Add SVG support.

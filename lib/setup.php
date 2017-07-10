@@ -3,7 +3,7 @@
  * Theme setup functions.
  */
 
-namespace THEMENAME\Setup;
+namespace leijonaa\Setup;
 
 // Define the asset path.
 if ( ! defined( 'ASSET_PATH' ) ) {
@@ -15,14 +15,14 @@ if ( ! defined( 'ASSET_PATH' ) ) {
  */
 function setup() {
     // Make theme available for translation
-    \load_theme_textdomain( 'themename-textdomain', get_template_directory() . '/lang' );
+    \load_theme_textdomain( 'leijonaa', get_template_directory() . '/lang' );
     // Enable plugins to manage the document title
     // http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
     \add_theme_support( 'title-tag' );
     // Register wp_nav_menu() menus
     // http://codex.wordpress.org/Function_Reference/register_nav_menus
     \register_nav_menus( [
-        'primary_navigation' => __( 'Primary Navigation', 'themename-textdomain' ),
+        'primary_navigation' => __( 'Primary Navigation', 'leijonaa' ),
     ] );
     // Enable post thumbnails
     // http://codex.wordpress.org/Post_Thumbnails
