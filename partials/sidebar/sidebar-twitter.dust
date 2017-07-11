@@ -1,0 +1,5 @@
+{! File contains top sidebar element: latest tweets. !}
+{#Author}
+	<div class="sidebar__twitter">
+	</div>
+{/Author}

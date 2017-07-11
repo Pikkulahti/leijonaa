@@ -1,0 +1,5 @@
+{! File contains top sidebar element: newest posts. !}
+{#Newest}
+	<div class="sidebar__newest">
+	</div>
+{/Newest}

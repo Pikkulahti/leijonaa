@@ -16,6 +16,102 @@ class MiddleModel extends \DustPress\Model {
         $this->bind_sub( 'Footer' );
     }
 
+
+    /**
+     * Fetches author data from options and stores it under MiddleModel class.
+     */
+    protected function get_author() {
+
+        $author = array();
+
+        // Check that acf is initialized.
+        if ( function_exists('get_field') ) {
+            // Get author email.
+            $raw_email = get_field( 'ljn_author-email', 'option' );
+            // If email is set, obfuscate it.
+            $email = ! empty( $raw_email ) ? antispambot( $raw_email ) : '';
+
+            // Get author data from options.
+            $author = array(
+                'image'  => get_sub_field( 'ljn_author-image', 'option' ),
+                'name'   => get_sub_field( 'ljn_author-name',  'option' ),
+                'intro'  => get_field( 'ljn_author-intro', 'option' ),
+                'email'  => $email,
+            );
+        }
+
+        return $author;
+    }
+
+    /**
+     * Fetches five newest posts and stores them under MiddleModel class.
+     */
+    protected function get_newest() {
+
+        $args = [
+            'post_type'                 => 'post',
+            'posts_per_page'            => 5,
+            'update_post_meta_cache'    => false,
+            'update_post_term_cache'    => false,
+            'no_found_rows'             => true,
+            'query_object'              => false,
+        ];
+
+        $query = new WP_Query( $args );
+        
+        $newest = array();
+
+        // If we have posts
+        if ( isset( $query->posts ) ) {
+            // Loop through posts and take needed data.
+            foreach ( $query->posts as $post ) {
+                $article = new stdClass();
+                $article->permalink = get_permalink( $post->ID );
+                $article->title = $post->post_title;
+                $newest[] = $article;
+            }
+
+        }
+
+        wp_reset_query();
+
+        return $newest;
+    }
+
+    /**
+     * Fetches monthly archives from last four years and stores them under MiddleModel class.
+     */
+    protected function get_archive() {
+        $args = array(
+            'type'            => 'monthly',
+            'limit'           => '48',
+            'format'          => 'custom',
+            'show_post_count' => true,
+            'echo'            => false,
+            'order'           => 'DESC',
+            'post_type'       => 'post', 
+        );
+
+        $archive = wp_get_archives( $args );
+
+        return $archive;
+    }    
+
+    /**
+     * Map and return sidebar data.
+     */
+    public function Sidebar() {
+
+        $sidebar = array(
+            'Author'  => $this->get_author(),
+            //'Twitter' => $this->get_twitter(),
+            'Newest'  => $this->get_newest(),
+            'Archive' => $this->get_archive(),
+        );
+
+        return $sidebar;
+    }
+
     /**
      * A wrapper function for querying posts from all categories.
      *
