@@ -4,18 +4,15 @@
 {#Single}
 
     <div class="wrapper">
-        {! Posts loop in top of the page in mobile and right side on desktop !}
-        <main class="content">
-            {>"shared/article" /}
-        </main>
+        {! Article content !}
+        {#Post}
+            <main class="content">
+                {>"shared/article" /}
+            </main>
+        {/Post}
 
         {! Sidebar located in bottom of the page in mobile and right side on desktop !}
-        {#Sidebar}
-            <aside class="sidebar" role="sidebar">
-                {>"sidebar/sidebar-author" /}
-                {>"sidebar/sidebar-archive" /}
-            </aside>
-        {/Sidebar}
+        {>"shared/sidebar" /}
 
     </div>
 
