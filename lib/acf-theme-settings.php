@@ -24,7 +24,7 @@ if( \function_exists('acf_add_options_page') ) {
  */
 if( \function_exists('acf_add_local_field_group') ) {
 	acf_add_local_field_group(array (
-		'key' => 'group_596490f22b415',
+		'key' => 'ljn_author-fields',
 		'title' => __('Hi! Nice to meet you.', 'leijonaa' ),
 		'fields' => array (
 			array (
@@ -110,11 +110,11 @@ if( \function_exists('acf_add_local_field_group') ) {
 	 * Register hero image field to theme settings page.
 	 */
 	acf_add_local_field_group(array (
-		'key' => 'group_59648dbc463f0',
+		'key' => 'ljn_hero-fields',
 		'title' => 'Hero image',
 		'fields' => array (
 			array (
-				'key' => 'field_59649e8dcb366',
+				'key' => 'ljn_hero-image',
 				'label' => __('Instructions', 'leijonaa'),
 				'name' => 'ljn_hero-image',
 				'type' => 'image',
