@@ -17,7 +17,7 @@
                 {>"sidebar/sidebar-author" /}
                 {>"sidebar/sidebar-archive" /}
             </aside>
-        {#Sidebar}
+        {/Sidebar}
     </div>
 
 {/Index}
