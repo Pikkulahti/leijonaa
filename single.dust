@@ -1,13 +1,12 @@
 {>"shared/header" /}
 
-{! Open the Index context !}
-{#Index}
+{! Open the Single context !}
+{#Single}
+
     <div class="wrapper">
         {! Posts loop in top of the page in mobile and right side on desktop !}
         <main class="content">
-            {#Posts}
-                {>"shared/article" /}
-            {/Posts}
+            {>"shared/article" /}
         </main>
 
         {! Sidebar located in bottom of the page in mobile and right side on desktop !}
@@ -17,8 +16,10 @@
                 {>"sidebar/sidebar-archive" /}
             </aside>
         {/Sidebar}
+
     </div>
-{/Index}
-{! End the Index context !}
+
+{/Single}
+{! End the Single context !}
 
 {>"shared/footer" /}

@@ -8,10 +8,13 @@ dustpress();
 $lib_path = dirname( __FILE__ ) . '/lib/';
 // List your /lib files here.
 $includes = [
-    'extras.php', // Custom functions
-    'setup.php',  // Theme setup
-    'images.php', // Image functions
+	'acf-theme-settings.php', // Theme settings
+	//'acf-post-fields.php',	  // Post fields
+    'extras.php', 			  // Custom functions
+    'setup.php',  			  // Theme setup
+    'images.php', 			  // Image functions
 ];
+
 foreach ( $includes as $file ) {
     $file_path = $lib_path . $file;
     if ( is_file( $file_path ) ) {

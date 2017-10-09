@@ -10,7 +10,8 @@ class Single extends MiddleModel {
      *
      * @return array|null|WP_Post
      */
-    public function Content() {
-        return get_post( get_the_ID() );
+    public function Post() {
+        return get_acf_post( get_the_ID() );
     }
+
 }

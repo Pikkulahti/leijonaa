@@ -1,30 +1,33 @@
 /**
-* Theme JS building
-*/
+ * Theme JS building
+ */
 
 // Require 3rd party libraries
-require( "babel-polyfill" );
-require( "milligram" );
-
-// Add template-specific scripts.
-let templateScripts = {
-    "PageFrontpage": require( __dirname + "/page-frontpage.js" )
-};
-
-// Add global scripts that have their 'docReady' method run on every page load.
-let globalScripts = {
-    "Common": require( __dirname + "/common.js" )
-};
+require('babel-polyfill');
+require('milligram');
 
 // Run the theme scripts.
-let Theme = require( __dirname + "/theme.js" );
-Theme = new Theme( templateScripts, globalScripts );
+let Theme = require( __dirname + '/theme.js' );
 
-// Export for global usage.
+// Export the theme controller for global usage.
 window.Theme = Theme;
 
-/**
-* require main style file here for concatenation
-*/
+// Require global scripts
+let globalControllers = [
+    require(__dirname + '/storage.js'),
+    require(__dirname + '/common.js')
+];
 
-require( __dirname + "/../styles/main.scss" );
+// Require template-specific scripts.
+let templateControllers = [
+    require(__dirname + '/index.js'),
+];
+
+// Pass the required scripts and construct the global ones first.
+Theme.setGlobalControllers(globalControllers);
+Theme.setTemplateControllers(templateControllers);
+
+// Require main style file here for concatenation.
+require(__dirname + '/../styles/main.scss');
+// Require jquery ui for autocomplete.
+require( __dirname + '/jquery-ui.js');

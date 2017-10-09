@@ -4,9 +4,9 @@
     </div>
     {! Article title. H1 if single, H2 if in loop !}
     {?Single}
-        <h1 class="article__header"> {title|s} </h1>
+        <h1 class="article__header"> {post_title|s} </h1>
     {:else}
-        <h2 class="article__header"> {title|s} </h2>
+        <h2 class="article__header"> {post_title|s} </h2>
     {/Single}
     {! Article meta info !}
     <div class="article__comments">
@@ -14,7 +14,8 @@
     </div>
 
     <a class="article__comments">
-        {post_comments} ( )_
+        {post_comments}  {@svg icon="bubble"/}
+
     </a>
 
     <a class="article__likes">
@@ -23,7 +24,7 @@
         {:else}
             0
         {/like}
-        &gt;3
+        {@svg icon="heart"/}
     </a>
 
     <div class="article__category">

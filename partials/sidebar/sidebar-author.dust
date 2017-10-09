@@ -1,5 +1,9 @@
 {! File contains top sidebar element: author info. !}
 {#Author}
 	<div class="sidebar__author">
+		<img src="{image.url}">
+		<h2> {name} </h2>
+		{@content data=intro /}
+		<a href="mailto:{email}">{email}</a>
 	</div>
 {/Author}

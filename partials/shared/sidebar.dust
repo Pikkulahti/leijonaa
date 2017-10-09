@@ -1,0 +1,8 @@
+{#Sidebar}
+    <aside class="sidebar" role="sidebar">
+        {>"sidebar/sidebar-author" /}
+        {>"sidebar/sidebar-twitter" /}
+        {>"sidebar/sidebar-newest" /}
+        {>"sidebar/sidebar-archive" /}
+    </aside>
+{/Sidebar}
