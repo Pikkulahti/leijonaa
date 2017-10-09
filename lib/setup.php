@@ -9,7 +9,9 @@ namespace leijonaa\Setup;
 if ( ! defined( 'ASSET_PATH' ) ) {
     define( 'ASSET_PATH', \get_template_directory_uri() . '/assets/dist' );
 }
-
+if ( ! function_exists( 'get_field' ) && ! is_admin() ) {
+    wp_die( __('Advanced Custom Fields is not activated!', 'leijonaa' ) );
+}
 /**
  * Theme setup.
  */
@@ -34,24 +36,23 @@ function setup() {
     // add_theme_support('post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'video', 'audio']);
     // Enable HTML5 markup support
     // http://codex.wordpress.org/Function_Reference/add_theme_support#HTML5
-    \add_theme_support( 'html5', [ 'caption', 'comment-form', 'comment-list', 'gallery', 'search-form' ] );
+    \add_theme_support( 'html5', ['caption', 'comment-form', 'comment-list', 'gallery', 'search-form'] );
     // Use main stylesheet for visual editor
     // To add custom styles edit /assets/styles/layouts/_tinymce.scss
     \add_editor_style( ASSET_PATH . '/styles/main.css' );
 }
-\add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
 
+\add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
 /**
  * Theme assets.
  */
 function assets() {
-    $version    = wp_get_theme()->get( 'Version' );
+    $version = wp_get_theme()->get( 'Version' );
     \wp_enqueue_style( 'theme-css', ASSET_PATH . '/main.css', [], $version, 'all' );
-    \wp_enqueue_script( 'theme-js', ASSET_PATH . '/main.js', [ 'jquery' ], $version, true );
+    \wp_enqueue_script( 'theme-js', ASSET_PATH . '/main.js', ['jquery'], $version, true );
 }
 
 \add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100 );
-
 /**
  * Disable emojis.
  */
@@ -65,18 +66,20 @@ function disable_emojis() {
     \remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
     add_filter( 'tiny_mce_plugins', __NAMESPACE__ . '\\disable_emojis_tinymce' );
 }
-\add_action( 'init', __NAMESPACE__ . '\\disable_emojis' );
 
+\add_action( 'init', __NAMESPACE__ . '\\disable_emojis' );
 /**
  * Removes the emoji plugin from tinymce.
  *
  * @param  array $plugins Installed tinymce plugins.
+ *
  * @return array
  */
 function disable_emojis_tinymce( $plugins ) {
     if ( is_array( $plugins ) ) {
-        return array_diff( $plugins, [ 'wpemoji' ] );
-    } else {
+        return array_diff( $plugins, ['wpemoji'] );
+    }
+    else {
         return [];
     }
 }
@@ -88,8 +91,8 @@ function start_cleanup() {
     // Initialize the cleanup
     \add_action( 'init', __NAMESPACE__ . '\\cleanup_head' );
 }
-\add_action( 'after_setup_theme', __NAMESPACE__ . '\\start_cleanup' );
 
+\add_action( 'after_setup_theme', __NAMESPACE__ . '\\start_cleanup' );
 /**
  *  WordPress cleanup function.
  */
