@@ -30,7 +30,7 @@ class MiddleModel extends \DustPress\Model {
             // Get author name, image and email as array.
             $author_data = get_field( 'ljn_author-wrapper','option' );
 
-            // Get author email from the array containing array. 
+            // Get author email from the array containing array.
             // The parent array can only have one item so we can use [0].
             $raw_email = $author_data[0]['ljn_author-email'];
 
@@ -42,6 +42,7 @@ class MiddleModel extends \DustPress\Model {
                 'intro'  => get_field( 'ljn_author-intro', 'option' ),
                 'image'  => $author_data[0]['ljn_author-image'],
                 'name'   => $author_data[0]['ljn_author-name'],
+            );
             // Get author email.
             $raw_email = get_field( 'ljn_author-email', 'option' );
             // If email is set, obfuscate it.
@@ -74,7 +75,7 @@ class MiddleModel extends \DustPress\Model {
         ];
 
         $query = new WP_Query( $args );
-        
+
         $newest = array();
 
         // If we have posts
@@ -105,13 +106,13 @@ class MiddleModel extends \DustPress\Model {
             'show_post_count' => true,
             'echo'            => false,
             'order'           => 'DESC',
-            'post_type'       => 'post', 
+            'post_type'       => 'post',
         );
 
         $archive = wp_get_archives( $args );
 
         return $archive;
-    }    
+    }
 
     /**
      * Map and return sidebar data.
