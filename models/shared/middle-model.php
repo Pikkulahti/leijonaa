@@ -26,6 +26,7 @@ class MiddleModel extends \DustPress\Model {
 
         // Check that acf is initialized.
         if ( function_exists('get_field') ) {
+
             // Get author name, image and email as array.
             $author_data = get_field( 'ljn_author-wrapper','option' );
 
@@ -41,6 +42,16 @@ class MiddleModel extends \DustPress\Model {
                 'intro'  => get_field( 'ljn_author-intro', 'option' ),
                 'image'  => $author_data[0]['ljn_author-image'],
                 'name'   => $author_data[0]['ljn_author-name'],
+            // Get author email.
+            $raw_email = get_field( 'ljn_author-email', 'option' );
+            // If email is set, obfuscate it.
+            $email = ! empty( $raw_email ) ? antispambot( $raw_email ) : '';
+
+            // Get author data from options.
+            $author = array(
+                'image'  => get_sub_field( 'ljn_author-image', 'option' ),
+                'name'   => get_sub_field( 'ljn_author-name',  'option' ),
+                'intro'  => get_field( 'ljn_author-intro', 'option' ),
                 'email'  => $email,
             );
         }

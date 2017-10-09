@@ -1,0 +1,3 @@
+[submodule "dustpress"]
+	path = dustpress
+	url = https://github.com/devgeniem/dustpress
