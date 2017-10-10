@@ -10,8 +10,23 @@ class Single extends MiddleModel {
      *
      * @return array|null|WP_Post
      */
-    public function Post() {
-        return get_acf_post( get_the_ID() );
+    public function post() {
+        $post = \DustPress\Query::get_acf_post( get_the_ID() );
+        return $post;
+    }
+
+    /**
+     *  Return strings for localization.
+     *
+     * @return array
+     */
+    public function l10n() {
+        $strings = array(
+            'ilove' => __( 'I love this!', 'leijonaa' ),
+            'likes' => __( 'likes', 'leijonaa' ),
+            'comments' => __('comments', 'leijonaa' ),
+        );
+        return $strings;
     }
 
 }
