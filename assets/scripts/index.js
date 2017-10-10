@@ -92,4 +92,3 @@ class Index {
 }
 
 module.exports = Index;
-Contact GitHub API Training Shop Blog About
