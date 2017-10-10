@@ -1,0 +1,28 @@
+{! Comments !}
+
+<div class="article__meta article__meta--date">
+    {@strtodate value=post_date format="d.m.Y" /}
+</div>
+
+<div class="article__meta article__meta--comments">
+    <span class="commments__amount">{post_comments}</span>
+    {@svg class="svg-icon svg-icon__bubble" icon="bubble"/}
+    <span class="for-screen-reader-only">{l10n.comments}</span>
+</div>
+
+{! Likes !}
+<div class="article__meta article__meta--likes">
+    {likes}<span class="for-screen-reader-only">{l10n.likes}</span>
+    {! Like this button !}
+    <a href="#">
+        {@svg class="svg-icon svg-icon__heart" icon="heart"/}
+        <span class="for-screen-reader-only">{l10n.ilove} </span>
+    </a>
+</div>
+
+<div class="article__meta article__meta--category">
+    {#categories}
+        <a class="category__link" href="{category_url}"> {category_name} </a>
+        {@sep}<span class="category__separator"> / </span>{/sep}
+    {/categories}
+</div>

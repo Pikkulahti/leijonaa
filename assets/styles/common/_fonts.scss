@@ -1,12 +1,25 @@
 // Import fonts from Google Web Fonts
 @import url('https://fonts.googleapis.com/css?family=Kalam|Oswald');
 
-
 h1,
 h2,
 h3,
 h4,
 h5 {
 	font-family: $headerfont;
+    clear:both;
 }
+p {
+    font-family: $paragraphfont;
+}
+
+
+.article__meta {
+    font-family: $datefont;
+    font-size: 1.25em;
+}
+
+
+
+
 

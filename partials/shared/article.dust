@@ -1,44 +1,13 @@
 <article class="article">
-    <div class="article__date">
-        {@strtodate value=post_date format="d.m.Y" /}
-    </div>
-    {! Article title. H1 if single, H2 if in loop !}
-    {?Single}
-        <h1 class="article__header"> {post_title|s} </h1>
-    {:else}
-        <h2 class="article__header"> {post_title|s} </h2>
-    {/Single}
+    {>"shared/title" /}
     {! Article meta info !}
-    <div class="article__comments">
-
-    </div>
-
-    <a class="article__comments">
-        {post_comments}  {@svg icon="bubble"/}
-
-    </a>
-
-    <a class="article__likes">
-        {?like}
-            {like}
-        {:else}
-            0
-        {/like}
-        {@svg icon="heart"/}
-    </a>
-
-    <div class="article__category">
-        {#categories}
-            <a class="category__link" href="{category_url}"> {category_name} </a>
-            {@sep}<span class="category__separator"> / </span>{/sep}
-        {/categories}
-    </div>
+    {>"shared/article-meta" /}
     {! Article content !}
     <div class="article__content">
         {@content data=post_content /}
     </div>
     <span class="article__tags">
-        Avainsanat: 
+        Avainsanat:
         {#tags}
             <a href="{tag_url}">{tag_name}</a>
             {@sep}, {/sep}

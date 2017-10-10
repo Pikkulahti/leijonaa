@@ -1,0 +1,6 @@
+{! Article title. H1 if single, H2 if in loop !}
+{?Single}
+    <h1 class="article__header"> {post_title|s} </h1>
+{:else}
+    <h2 class="article__header"> {post_title|s} </h2>
+{/Single}
