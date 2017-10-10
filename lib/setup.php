@@ -9,9 +9,15 @@ namespace leijonaa\Setup;
 if ( ! defined( 'ASSET_PATH' ) ) {
     define( 'ASSET_PATH', \get_template_directory_uri() . '/assets/dist' );
 }
+// Check for ACF.
 if ( ! function_exists( 'get_field' ) && ! is_admin() ) {
-    wp_die( __('Advanced Custom Fields is not activated!', 'leijonaa' ) );
+    wp_die( __('Advanced Custom Fields is not installed or activated!', 'leijonaa' ) );
 }
+
+if ( ! defined( 'SVG_SPRITE_NAME' ) ) {
+    define( 'SVG_SPRITE_NAME', 'leijonaa-icons.svg' );
+}
+
 /**
  * Theme setup.
  */
