@@ -3,7 +3,7 @@
  * Initialize the theme settings loading.
  */
 // Include Dustpress. Because of provider we don't use autoloaders.
-include('dustpress/dustpress.php');
+//include('dustpress/dustpress.php');
 // Use dustpress
 dustpress();
 // Require all function files under /lib.
@@ -14,7 +14,8 @@ $includes = [
 	'acf-article-fields.php', // Post fields
     'extras.php', 			  // Custom functions
     'setup.php',  			  // Theme setup
-    'images.php', 			  // Image functions
+    'images.php', 			  // Image functions,
+    'svg.php',                // Svg helper.
 ];
 
 foreach ( $includes as $file ) {
