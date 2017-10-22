@@ -14,8 +14,7 @@ window.Theme = Theme;
 
 // Require global scripts
 let globalControllers = [
-    require(__dirname + '/storage.js'),
-    require(__dirname + '/common.js')
+    require(__dirname + '/common.js'),
 ];
 
 // Require template-specific scripts.
@@ -29,5 +28,3 @@ Theme.setTemplateControllers(templateControllers);
 
 // Require main style file here for concatenation.
 require(__dirname + '/../styles/main.scss');
-// Require jquery ui for autocomplete.
-require( __dirname + '/jquery-ui.js');

@@ -1,18 +1,13 @@
 {! Comments !}
-
-<div class="article__meta article__meta--date">
-    {@strtodate value=post_date format="d.m.Y" /}
-</div>
-
 <div class="article__meta article__meta--comments">
-    <span class="commments__amount">{post_comments}</span>
+    <span class="commments__amount">{post_comments}20</span>
     {@svg class="svg-icon svg-icon__bubble" icon="bubble"/}
     <span class="for-screen-reader-only">{l10n.comments}</span>
 </div>
 
 {! Likes !}
 <div class="article__meta article__meta--likes">
-    {likes}<span class="for-screen-reader-only">{l10n.likes}</span>
+    {likes}4<span class="for-screen-reader-only">{l10n.likes}</span>
     {! Like this button !}
     <a href="#">
         {@svg class="svg-icon svg-icon__heart" icon="heart"/}

@@ -1,4 +1,7 @@
 <article class="article">
+    <div class="article__date">
+        {@strtodate value=post_date format="d.m.Y" /}
+    </div>
     {>"shared/title" /}
     {! Article meta info !}
     {>"shared/article-meta" /}
